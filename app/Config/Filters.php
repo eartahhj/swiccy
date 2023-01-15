@@ -73,7 +73,21 @@ class Filters extends BaseConfig
      */
     public $filters = [
         'login' => [
-            'before' => ['admin/*', 'en/posts/*', 'en/users/*', 'en/user/*', 'it/annunci/*', 'it/utenti/*', 'it/utente/*']
+            'before' => [
+                'admin/*',
+                'en/posts/new*',
+                'en/posts/create*',
+                'en/posts/edit*',
+                'en/posts/delete*',
+                'en/users/*',
+                'en/user/*',
+                'it/annunci/nuovo*',
+                'it/annunci/crea*',
+                'it/annunci/modifica*',
+                'it/annunci/elimina*',
+                'it/utenti/*',
+                'it/utente/*'
+            ]
         ],
         'admin' => [
             'before' => ['admin/*']

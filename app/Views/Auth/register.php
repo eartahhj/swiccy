@@ -4,6 +4,7 @@
 
 <?= $this->section('content') ?>
 
+<section class="template-standard">
     <div class="container">
         <div class="box">
             <h1 class="title is-2"><?= _('Register') ?></h1>
@@ -60,6 +61,7 @@
             </form>
         </div>
     </div>
+</section>
 
 <?= $this->endSection() ?>
 

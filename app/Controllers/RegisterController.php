@@ -20,7 +20,6 @@ use App\Models\UserModel;
  */
 class RegisterController extends BaseController
 {
-    protected $helpers = ['setting', 'route'];
 
     /**
      * Displays the registration form.
@@ -119,6 +118,17 @@ class RegisterController extends BaseController
         $authenticator->activateUser($user);
 
         $authenticator->completeLogin($user);
+
+        try {
+            $email = service('email');
+            $email->setFrom(env('email.from'), env('email.fromName'));
+            $email->setTo(env('email.defaultRecipient'));
+            $email->setSubject('New user on Swiccy');
+            $email->setMessage('A new user has registered on Swiccy. Username: ' . esc($user->username));
+            $email->send();
+        } catch (\Exception $e) {
+            log_message('error', '[ERROR] {exception} in [file] at [line]', ['exception' => $e]);
+        }
 
         // Success!
         return redirect()->to(config('Auth')->registerRedirect())

@@ -13,15 +13,15 @@
             </div>
         <?php endif?>
 
-        <article class="text">
-            <?= $page->{'html_' . $locale} ?>
-        </article>
-
         <?php if ($authUser and $authUser->inGroup('admin', 'superadmin')): ?>
-        <p class="buttons">
+        <p class="buttons mb-5">
             <a href="<?= url_to('admin.pages.edit', $page->id)?>" class="button is-link"><?= _('Edit this page') ?></a>
         </p>
         <?php endif?>
+
+        <article class="text">
+            <?= $page->{'html_' . $locale} ?>
+        </article>
     </div>
 </section>
 

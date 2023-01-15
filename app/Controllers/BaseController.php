@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 // use Kenjis\CI4Twig\Twig;
+use MatomoTracker;
+use Kenjis\CI4Twig\Twig;
 use CodeIgniter\Controller;
 use Psr\Log\LoggerInterface;
 use CodeIgniter\HTTP\CLIRequest;
@@ -41,7 +43,9 @@ abstract class BaseController extends Controller
     protected $helpers = [
         'form',
         'auth',
-        'route'
+        'route',
+        'page',
+        'cookiepolicy'
     ];
 
     // public ?Twig $twig = null;
@@ -92,12 +96,34 @@ abstract class BaseController extends Controller
 
         $this->user = auth()->user() ?? null;
 
-        $logoAnimationCookie = $request->getCookie('logo-animation');
-        if (empty($logoAnimationCookie) or $logoAnimationCookie == 'on') {
-            $logoAnimationCookie = true;
+        $animationsCookie = $request->getCookie('animations');
+        if (empty($animationsCookie) or $animationsCookie == 'on') {
+            $animationsEnabled = true;
         } else {
-            $logoAnimationCookie = false;
+            $animationsEnabled = false;
         }
+
+        $showCookiePolicyBanner = true;
+        $privacyCookie = $request->getCookie('privacy');
+        $cookiesConsent = $request->getCookie('cookiesConsent');
+
+        if (!empty($privacyCookie)) {
+            $showCookiePolicyBanner = false;
+        }
+
+        if (!empty($cookiesConsent)) {
+            // dd($cookiesConsent);
+        }
+
+        $matomoSiteId = env('matomo.siteId');
+        $matomoUrl = env('matomo.host');
+        $matomoToken = env('matomo.token');
+        $matomoPageTitle = '';
+
+        $matomoTracker = new MatomoTracker($matomoSiteId, $matomoUrl);
+        $matomoTracker->setTokenAuth($matomoToken);
+
+        // TODO test gettext and publish website with pulling
 
         $view = service('renderer');
         $view->setVar('locale', $this->language);
@@ -105,8 +131,10 @@ abstract class BaseController extends Controller
         $view->setVar('templateStylesheets', static::$templateStylesheets);
         $view->setVar('isUserLogged', auth()->loggedIn());
         $view->setVar('authUser', auth()->user() ?? null);
-        $view->setVar('logoAnimation', $logoAnimationCookie);
+        $view->setVar('animationsEnabled', $animationsEnabled);
         $view->setVar('languages', $this->languages);
+        $view->setVar('showCookiePolicyBanner', $showCookiePolicyBanner);
+        // $view->setVar('hasUserAcceptedTracking', $hasUserAcceptedTracking);
 
         // $this->parser = \Config\Services::parser();
         // $this->parser->setData([

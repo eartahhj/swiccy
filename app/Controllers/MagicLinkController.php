@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
-use CodeIgniter\Events\Events;
-use CodeIgniter\HTTP\RedirectResponse;
+use App\Models\UserModel;
 use CodeIgniter\I18n\Time;
-use CodeIgniter\Shield\Authentication\Authenticators\Session;
+use CodeIgniter\Events\Events;
+use App\Controllers\BaseController;
+use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Shield\Models\LoginModel;
 use CodeIgniter\Shield\Models\UserIdentityModel;
-use App\Models\UserModel;
+use CodeIgniter\Shield\Authentication\Authenticators\Session;
 
 /**
  * Handles "Magic Link" logins - an email-based
@@ -44,7 +44,7 @@ class MagicLinkController extends BaseController
     public function loginView()
     {
         if (auth()->loggedIn()) {
-            return redirect()->to(config('Auth')->loginRedirect())->with('info', _('You are already logged in!'));
+            return redirect()->to(config('Auth')->loginRedirect());
         }
 
         return view(setting('Auth.views')['magic-link-login']);
@@ -62,7 +62,7 @@ class MagicLinkController extends BaseController
         // Validate email format
         $rules = $this->getValidationRules();
         if (! $this->validate($rules)) {
-            return redirect()->to(route('magic.link'))->with('errors', $this->validator->getErrors());
+            return redirect()->route('magic-link')->with('errors', $this->validator->getErrors());
         }
 
         // Check if the user exists
@@ -70,7 +70,7 @@ class MagicLinkController extends BaseController
         $user  = $this->provider->findByCredentials(['email' => $email]);
 
         if ($user === null) {
-            return redirect()->to(route('magic.link'))->with('error', lang('Auth.invalidEmail'));
+            return redirect()->route('magic-link')->with('error', lang('Auth.invalidEmail'));
         }
 
         /** @var UserIdentityModel $identityModel */
@@ -99,7 +99,7 @@ class MagicLinkController extends BaseController
         if ($email->send(false) === false) {
             log_message('error', $email->printDebugger(['headers']));
 
-            return redirect()->to(route('magic.link'))->with('error', lang('Auth.unableSendEmailToUser', [$user->email]));
+            return redirect()->route('magic-link')->with('error', lang('Auth.unableSendEmailToUser', [$user->email]));
         }
 
         // Clear the email
@@ -128,6 +128,12 @@ class MagicLinkController extends BaseController
 
         $identity = $identityModel->getIdentityBySecret(Session::ID_TYPE_MAGIC_LINK, $token);
 
+        $user = $this->provider->where('id', $identity->user_id)->first();
+
+        if (!$user->active) {
+            return redirect()->to(route('magic.link'))->with('error', _('Your account has not been activated yet. Please try to login first or request a new activation email.'));
+        }
+
         $identifier = $token ?? '';
 
         // No token found?
@@ -137,7 +143,7 @@ class MagicLinkController extends BaseController
             $credentials = ['magicLinkToken' => $token];
             Events::trigger('failedLogin', $credentials);
 
-            return redirect()->to(route('magic.link'))->with('error', lang('Auth.magicTokenNotFound'));
+            return redirect()->route('magic-link')->with('error', lang('Auth.magicTokenNotFound'));
         }
 
         // Delete the db entry so it cannot be used again.
@@ -150,7 +156,7 @@ class MagicLinkController extends BaseController
             $credentials = ['magicLinkToken' => $token];
             Events::trigger('failedLogin', $credentials);
 
-            return redirect()->to(route('magic.link'))->with('error', lang('Auth.magicLinkExpired'));
+            return redirect()->route('magic-link')->with('error', lang('Auth.magicLinkExpired'));
         }
 
         /** @var Session $authenticator */
@@ -170,7 +176,7 @@ class MagicLinkController extends BaseController
         Events::trigger('magicLogin');
 
         // Get our login redirect url
-        return redirect()->to(config('Auth')->loginRedirect())->with('info', _('You are now logged in!'));
+        return redirect()->to(config('Auth')->loginRedirect());
     }
 
     /**
@@ -209,3 +215,4 @@ class MagicLinkController extends BaseController
         ];
     }
 }
+

@@ -3,26 +3,41 @@ $(function () {
         $(this).parents('.dropdown').toggleClass('is-active');
     });
 
-    const logoAnimationCookie = document.cookie.split('; ')
-    .find((row) => row.startsWith('logo-animation='))
+    siteAnimations();
+});
+
+function siteAnimations()
+{
+    const animationsCookie = document.cookie.split('; ')
+    .find((row) => row.startsWith('animations='))
     ?.split('=')[1];
 
-    if (logoAnimationCookie == 'on' || typeof logoAnimationCookie == 'undefined') {
-        $('#header-main-grid .logo').addClass('animated');
+    if (animationsCookie == 'on' || typeof animationsCookie == 'undefined') {
+        $('.has-animation').addClass('animated').removeClass('has-animation');
     }
 
-    $('#logo-animation-switch-handler').change(function () {
+    $('#animations-switch-handler').change(function () {
         let isChecked = $(this).is(':checked');
         const d = new Date();
         d.setTime(d.getTime() + (28*24*60*60*1000));
         let expires = "expires="+ d.toUTCString();
 
         if (isChecked) {
-            $('#header-main-grid .logo.animated').removeClass('animated');
-            document.cookie = "logo-animation=off; " + expires + "; path=/; secure; samesite=Strict;";
+            $('.animated').removeClass('animated').addClass('has-animation');
+            document.cookie = "animations=off; " + expires + "; path=/; secure; samesite=Strict;";
         } else {
-            $('#header-main-grid .logo').addClass('animated');
-            document.cookie = "logo-animation=on; " + expires + "; path=/; secure; samesite=Strict;";
+            $('.has-animation').addClass('animated').removeClass('has-animation');
+            document.cookie = "animations=on; " + expires + "; path=/; secure; samesite=Strict;";
         }
     });
-});
+}
+
+function closeCookieBanner()
+{
+    const d = new Date();
+    d.setTime(d.getTime() + (28*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = "privacy=ok; " + expires + "; path=/; secure; samesite=Strict;";
+
+    return document.getElementById('cookie-policy-banner').remove();
+}

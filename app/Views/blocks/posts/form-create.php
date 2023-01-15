@@ -12,7 +12,7 @@
             <div class="field">
                 <label class="label" for="post-title"><?=_('What do you want to exchange?')?> <?=_('*')?></label>
                 <div class="control has-icons-left has-icons-right">
-                    <input type="text" class="input" name="title" id="post-title" value="<?=old('title', 'Lorem ipsum dolor')?>" minlength="5" maxlength="200" required="required" placeholder="<?= _('Pandoro from Christmas 2022') ?>" autocomplete="off">
+                    <input type="text" class="input" name="title" id="post-title" value="<?=old('title', '')?>" minlength="5" maxlength="200" required="required" placeholder="<?= _('Pandoro from Christmas 2022') ?>" autocomplete="off">
                     <span class="icon is-small is-left">
                         <i class="fas fa-bullhorn"></i>
                     </span>
@@ -24,7 +24,7 @@
                 <div class="field">
                     <label class="label" for="post-quantity-give"><?=_('Quantity to give')?> <?= _('*')?></label>
                     <div class="control has-icons-left has-icons-right">
-                        <input type="number" class="input" name="quantity_give" id="post-quantity-give" value="<?=old('quantity_give', '1')?>" min="0" max="1000" step="1" required="required" placeholder="1" autocomplete="off">
+                        <input type="number" class="input" name="quantity_give" id="post-quantity-give" value="<?=old('quantity_give', '0')?>" min="0" max="1000" step="1" required="required" placeholder="1" autocomplete="off">
                         <span class="icon is-small is-left">
                             <i class="fas fa-scale-balanced"></i>
                         </span>
@@ -34,7 +34,7 @@
                 <div class="field">
                     <label class="label" for="post-quantity-receive"><?=_('Quantity to receive')?> <?= _('*')?></label>
                     <div class="control has-icons-left has-icons-right">
-                        <input type="number" class="input" name="quantity_receive" id="post-quantity-receive" value="<?=old('quantity_receive', '1')?>" min="0" max="1000" step="1" required="required" placeholder="1" autocomplete="off">
+                        <input type="number" class="input" name="quantity_receive" id="post-quantity-receive" value="<?=old('quantity_receive', '0')?>" min="0" max="1000" step="1" required="required" placeholder="1" autocomplete="off">
                         <span class="icon is-small is-left">
                             <i class="fas fa-scale-balanced"></i>
                         </span>
@@ -46,7 +46,7 @@
             <div class="field">
                 <label class="label" for="post-text"><?=_('What would you like to receive?')?> <?=_('*')?></label>
                 <div class="control">
-                    <textarea class="textarea" id="post-text" name="text" cols="30" rows="10" minlength="10" maxlength="2000" required="required" placeholder="<?= _('Panettone with candied fruit') ?>" autocomplete="off"><?=old('text', 'Lorem ipsum dolor')?></textarea>
+                    <textarea class="textarea" id="post-text" name="text" cols="30" rows="10" minlength="10" maxlength="2000" required="required" placeholder="<?= _('Panettone with candied fruit') ?>" autocomplete="off"><?=old('text', '')?></textarea>
                 </div>
                 <p class="help"><?=_('Describe what items you are up to receive')?></p>
             </div>
@@ -60,7 +60,7 @@
                 <div class="field">
                     <label class="label" for="post-city"><?=_('City')?></label>
                     <div class="control has-icons-left has-icons-right">
-                        <input type="text" class="input" name="city" id="post-city" value="<?=old('city', 'Roma')?>" minlength="2" maxlength="200" required="required" placeholder="<?= _('City') ?>" autocomplete="address-line2">
+                        <input type="text" class="input" name="city" id="post-city" value="<?=old('city', '')?>" minlength="2" maxlength="200" required="required" placeholder="<?= _('City') ?>" autocomplete="address-line2">
                         <span class="icon is-small is-left">
                             <i class="fas fa-city"></i>
                         </span>
@@ -71,7 +71,7 @@
                 <div class="field">
                     <label class="label" for="post-address"><?=_('Address')?></label>
                     <div class="control has-icons-left has-icons-right">
-                        <input type="text" class="input" name="address" id="post-address" value="<?=old('address', 'Via Roma 123')?>" minlength="5" maxlength="200" placeholder="<?= _('Street address') ?>" autocomplete="address-line1">
+                        <input type="text" class="input" name="address" id="post-address" value="<?=old('address', '')?>" minlength="5" maxlength="200" placeholder="<?= _('Street address') ?>" autocomplete="address-line1">
                         <span class="icon is-small is-left">
                             <i class="fas fa-map"></i>
                         </span>
@@ -100,7 +100,7 @@
                 <div class="field">
                     <label class="label" for="post-phone"><?=_('Phone number')?></label>
                     <div class="control has-icons-left has-icons-right">
-                        <input type="tel" class="input" name="phone_number" id="post-phone" value="<?=old('phone_number', '1234567890')?>" minlength="5" maxlength="20" placeholder="" autocomplete="tel">
+                        <input type="tel" class="input" name="phone_number" id="post-phone" value="<?=old('phone_number', '')?>" minlength="5" maxlength="20" placeholder="" autocomplete="tel">
                         <span class="icon is-small is-left">
                             <i class="fas fa-phone"></i>
                         </span>

@@ -58,6 +58,10 @@ class LoginController extends BaseController
             return redirect()->to(config('Auth')->loginRedirect());
         }
 
+        if (service('request')->getGet('redirect') == 'formhome') {
+            session()->setFlashdata('warning', _('To post something you need to login or register'));
+        }
+
         /** @var Session $authenticator */
         $authenticator = auth('session')->getAuthenticator();
 

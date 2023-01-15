@@ -44,7 +44,7 @@ class HomeController extends BaseController
             $email = $user->email ?? '';
         }
         
-        return view('Home/index', compact('latestPosts', 'user', 'email') + ['templateJavascript' => self::$templateJavascripts, 'templateStylesheets' => self::$templateStylesheets]);
+        return view('Home/index', compact('latestPosts', 'user', 'email') + ['templateJavascripts' => static::$templateJavascripts, 'templateStylesheets' => static::$templateStylesheets]);
         // return $this->parser->setData(compact('latestPosts', 'user', 'email'))->render('Home/index');
     }
 }

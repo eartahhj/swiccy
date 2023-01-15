@@ -4,11 +4,14 @@
 
 <?= $this->section('content')?>
 
-<div class="container">
-    <div class="box">
-        <h1 class="title is-2"><?= _('Create a new page') ?></h1>
-        
-        <?= $this->include('blocks/pages/form-create') ?>
+<section class="template-admin">
+    <div class="container">
+        <div class="box">
+            <h1 class="title is-2"><?= _('Create a new page') ?></h1>
+            
+            <?= $this->include('blocks/pages/form-create') ?>
+        </div>
     </div>
-</div>
+</section>
+
 <?= $this->endSection() ?>

@@ -4,11 +4,14 @@
 
 <?= $this->section('content')?>
 
-<div class="container">
-    <div class="box">
-        <h1 class="title is-2"><?= _('Create a new post') ?></h1>
-        
-        <?= $this->include('blocks/posts/form-create') ?>
+<section class="template-standard">
+    <div class="container">
+        <div class="box">
+            <h1 class="title is-2"><?= _('Create a new post') ?></h1>
+            
+            <?= $this->include('blocks/posts/form-create') ?>
+        </div>
     </div>
-</div>
+</section>
+
 <?= $this->endSection() ?>

@@ -1,8 +1,8 @@
 #home-latest-posts { margin-top:3rem; }
 #home-latest-posts ul { align-items:stretch; align-content:center; }
-#home-latest-posts li { background-color:#d4e9ff; border-radius:0.5rem; padding:1rem; }
+#home-latest-posts li { background-color:var(--light-blue); border-radius:0.5rem; padding:1rem; }
 
-#home-create-post { margin-top:3rem; background-color:#d4e9ff; padding-top:2rem; padding-bottom:2rem; }
+#home-create-post { margin-top:3rem; background-color:var(--light-blue); padding-top:2rem; padding-bottom:2rem; }
 /* #home-create-post .box { background-color:var(--blue-dark); background:var(--gradient-secondary); } */
 #home-create-post fieldset { background-color:#fff; }
 #home-create-post .box { background-color:var(--blue-dark); }

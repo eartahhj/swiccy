@@ -52,11 +52,17 @@ $routes->group('en', function() use ($routes) {
     $routes->get('users/(:num)', [UserController::class, 'show/$1'], ['as' => 'en.users.show']);
     $routes->get('user/your-posts', [UserController::class, 'showMyPosts'], ['as' => 'en.users.showMyPosts']);
     $routes->get('user/profile', [UserController::class, 'showMyProfile'], ['as' => 'en.users.showMyProfile']);
-    $routes->get('user/recover-password', [UserController::class, 'recoverPasswordView'], ['as' => 'en.recoverPassword']);
-    $routes->post('user/recover-password', [UserController::class, 'recoverPasswordAction'], ['as' => 'en.recoverPasswordAction']);
+    $routes->get('user/change-password', [UserController::class, 'changePasswordView'], ['as' => 'en.changePassword']);
+    $routes->post('user/change-password', [UserController::class, 'changePasswordAction'], ['as' => 'en.changePasswordAction']);
     $routes->delete('user/delete-my-account', [UserController::class, 'deleteMyAccount'], ['as' => 'en.users.deleteMyAccount']);
     $routes->put('user/change-email', [UserController::class, 'changeEmailAction'], ['as' => 'en.user.change.email']);
     $routes->put('user/change-avatar', [UserController::class, 'changeAvatarAction'], ['as' => 'en.user.change.avatar']);
+    $routes->get('user/confirm-email-change', [UserController::class, 'confirmEmailChangeView'], ['as' => 'en.user.confirm.email.change.view']);
+    $routes->post('user/confirm-email-change', [UserController::class, 'confirmEmailChangeAction'], ['as' => 'en.user.confirm.email.change.action']);
+    $routes->get('activate-account', [UserController::class, 'activateAccountView'], ['as' => 'en.activate.account.view']);
+    $routes->post('activate-account', [UserController::class, 'activateUserByCode'], ['as' => 'en.activate.account.action']);
+    $routes->get('resend-activation-email', [UserController::class, 'requestActivationEmailView'], ['as' => 'en.resend.activation.email']);
+    $routes->post('resend-activation-email', [UserController::class, 'requestActivationEmailAction'], ['as' => 'en.resend.activation.email.action']);
 
 
     $routes->get('login', [LoginController::class, 'loginView'], ['as' => 'en.login']);
@@ -72,9 +78,9 @@ $routes->group('en', function() use ($routes) {
     
     $routes->get('login/magic-link', [MagicLinkController::class, 'loginView'], ['as' => 'en.magic.link']);
     $routes->post('login/magic-link', [MagicLinkController::class, 'loginAction'], ['as' => 'en.magic.link.action']);
-    $routes->get('login/verify-magic-link', [MagicLinkController::class, 'verify'], ['as' => 'en.verify.magic.ink']);
+    $routes->get('login/verify-magic-link', [MagicLinkController::class, 'verify'], ['as' => 'en.verify.magic.link']);
 
-    $routes->get('pages/(:alphanum)', [PageController::class, 'show'], ['as' => 'en.pages.show']);
+    $routes->get('pages/(:any)', [PageController::class, 'show'], ['as' => 'en.pages.show']);
 });
 
 $routes->group('it', function() use ($routes) {
@@ -92,10 +98,17 @@ $routes->group('it', function() use ($routes) {
     $routes->get('utenti/(:num)', [UserController::class, 'show/$1'], ['as' => 'it.users.show']);
     $routes->get('utente/profilo', [UserController::class, 'showMyProfile'], ['as' => 'it.users.showMyProfile']);
     $routes->get('utente/i-tuoi-post', [UserController::class, 'showMyPosts'], ['as' => 'it.users.showMyPosts']);
-    $routes->get('utente/recupera-password', [UserController::class, 'recoverPasswordView'], ['as' => 'it.recoverPassword']);
-    $routes->post('utente/recupera-password', [UserController::class, 'recoverPasswordAction'], ['as' => 'it.recoverPasswordAction']);
+    $routes->get('utente/recupera-password', [UserController::class, 'changePasswordView'], ['as' => 'it.changePassword']);
+    $routes->post('utente/recupera-password', [UserController::class, 'changePasswordAction'], ['as' => 'it.changePasswordAction']);
     $routes->delete('utente/elimina-account', [UserController::class, 'deleteMyAccount'], ['as' => 'it.users.deleteMyAccount']);
-
+    $routes->put('utente/cambia-email', [UserController::class, 'changeEmailAction'], ['as' => 'it.user.change.email']);
+    $routes->put('utente/cambia-avatar', [UserController::class, 'changeAvatarAction'], ['as' => 'it.user.change.avatar']);
+    $routes->get('user/conferma-cambio-email', [UserController::class, 'confirmEmailChangeView'], ['as' => 'it.user.confirm.email.change.view']);
+    $routes->post('user/conferma-cambio-email', [UserController::class, 'confirmEmailChangeAction'], ['as' => 'it.user.confirm.email.change.action']);
+    $routes->get('attiva-account', [UserController::class, 'activateAccountView'], ['as' => 'it.activate.account']);
+    $routes->post('attiva-account', [UserController::class, 'activateUserByCode'], ['as' => 'it.activate.account.action']);
+    $routes->get('reinvia-email-attivazione', [UserController::class, 'requestActivationEmailView'], ['as' => 'it.resend.activation.email']);
+    $routes->post('reinvia-email-attivazione', [UserController::class, 'requestActivationEmailAction'], ['as' => 'it.resend.activation.email.action']);
 
     $routes->get('accedi', [LoginController::class, 'loginView'], ['as' => 'it.login']);
     $routes->post('accedi', [LoginController::class, 'loginAction'], ['as' => 'it.login.create']);
@@ -112,7 +125,8 @@ $routes->group('it', function() use ($routes) {
     $routes->post('accedi/magic-link', [MagicLinkController::class, 'loginAction'], ['as' => 'it.magic.link.action']);
     $routes->get('accedi/verifica-magic-link', [MagicLinkController::class, 'verify'], ['as' => 'it.verify.magic.link']);
 
-    $routes->get('pagine/(:alphanum)', [PageController::class, 'show'], ['as' => 'it.pages.show']);
+    $routes->get('pagine/(:any)', [PageController::class, 'show'], ['as' => 'it.pages.show']);
+
 });
 
 // $routes->cli('migrate', 'MigrateController::index');

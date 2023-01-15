@@ -1,61 +1,68 @@
-<div class="container">
-    <?php if (session()->has('errors')):?>
-    <div class="message is-danger">
-        <div class="message-header"><?=_('Errors')?></div>
-        <div class="message-body">
-            <ul>
-            <?php foreach(session('errors') as $error):?>
-                <li>
-                    <?=$error?>
-                </li>
-            <?php endforeach?>
-            </ul>
+<?php
+if (!empty(session()->getFlashdata())):
+// if (session()->has('errors') or session()->has('error') or session()->has('message') or session()->has('warning') or session()->has('success') or session()->has('info')):
+    ?>
+<div id="page-alerts" aria-live="assertive">
+    <div class="container">
+        <?php if (session()->has('errors')):?>
+        <div class="message is-danger">
+            <div class="message-header"><?=_('Errors')?></div>
+            <div class="message-body">
+                <ul>
+                <?php foreach(session('errors') as $error):?>
+                    <li>
+                        <?=$error?>
+                    </li>
+                <?php endforeach?>
+                </ul>
+            </div>
         </div>
-    </div>
-    <?php endif?>
+        <?php endif?>
 
-    <?php if (session()->has('error')):?>
+        <?php if (session()->has('error')):?>
         <div class="message is-danger">
             <div class="message-header"><?= _('Error') ?></div>
             <div class="message-body">
                 <?= session('error') ?>
             </div>
         </div>
-    <?php endif?>
+        <?php endif?>
 
-    <?php if (session()->has('warning')):?>
+        <?php if (session()->has('warning')):?>
         <div class="message is-warning">
             <div class="message-header"><?= _('Warning') ?></div>
             <div class="message-body">
                 <?= session('warning') ?>
             </div>
         </div>
-    <?php endif?>
+        <?php endif?>
 
-    <?php if (session()->has('info')):?>
+        <?php if (session()->has('info')):?>
         <div class="message is-info">
             <div class="message-header"><?= _('Info') ?></div>
             <div class="message-body">
                 <?= session('info') ?>
             </div>
         </div>
-    <?php endif?>
+        <?php endif?>
 
-    <?php if (session()->has('message')):?>
+        <?php if (session()->has('message')):?>
         <div class="message is-info">
             <div class="message-header"><?= _('Info') ?></div>
             <div class="message-body">
                 <?= session('message') ?>
             </div>
         </div>
-    <?php endif?>
+        <?php endif?>
 
-    <?php if (session()->has('success')):?>
+        <?php if (session()->has('success')):?>
         <div class="message is-success">
             <div class="message-header"><?= _('Success') ?></div>
             <div class="message-body">
                 <?= session('success') ?>
             </div>
         </div>
-    <?php endif?>
+        <?php endif?>
+    </div>
 </div>
+<?php endif?>

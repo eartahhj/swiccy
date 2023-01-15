@@ -3,7 +3,7 @@
         <a href="<?= route_to('admin.pages.edit', $page->id) ?>">
         <?= esc($page->{'title_' . $locale}) ?>
         </a>
-        (<a href="<?= route('pages.show', $page->id) ?>"><?= _('View this page') ?></a>)
+        (<a href="<?= page_url($page->id) ?>"><?= _('View this page') ?></a>)
     </h2>
     <p><?= sprintf(_('Published: %s'), $page->published ? _('Yes') : _('No')) ?></p>
 

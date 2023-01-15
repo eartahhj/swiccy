@@ -40,7 +40,10 @@ class PostController extends BaseController
         $users = model(UserModel::class);
         $author = $users->where('id', $post->user_id)->first();
 
-        return view('Posts/show', compact('post', 'author'));
+        $imagesModel = model(ImageModel::class);
+        $images = $imagesModel->where('post_id', $post->id)->find();
+
+        return view('Posts/show', compact('post', 'author', 'images'));
     }
 
     public function new()
@@ -121,6 +124,17 @@ class PostController extends BaseController
                 return redirect()->back()->with('error', _('There was an error uploading images. Please check the files are valid and try again.'))->withInput();
             }
         }
+        
+        try {
+            $email = service('email');
+            $email->setFrom(env('email.from'), env('email.fromName'));
+            $email->setTo(env('email.defaultRecipient'));
+            $email->setSubject('New post on Swiccy');
+            $email->setMessage('A new post was sent on Swiccy. Title: ' . esc($post->title));
+            $email->send();
+        } catch (\Exception $e) {
+            log_message('error', '[ERROR] {exception} in [file] at [line]', ['exception' => $e]);
+        }
 
         return redirect()->to(route('posts.index'))->with('success', _('Post created succesfully!'));
     }
@@ -153,7 +167,7 @@ class PostController extends BaseController
             throw new PageNotFoundException(_('Post not found'));
         }
 
-        if ($post->id != auth()->user()->id) {
+        if (!auth()->user()->inGroup('superadmin') && ($post->user_id != auth()->user()->id)) {
             throw new PageNotFoundException(_('Unauthorized action'));
         }
 
@@ -189,6 +203,20 @@ class PostController extends BaseController
             if (!$imageModel->uploadImagesForPost($images, $post->id)) {
                 return redirect()->back()->with('error', _('There was an error uploading images. Please check the files are valid and try again.'))->withInput();
             }
+        }
+
+        try {
+            $message = "
+            A post has been edited on Swiccy. ID: {$post->id}, Title: " . esc($post->title) . '
+            <a href="' .  url_to('admin.posts.edit', $post->id) . '">View post</a>';
+            $email = service('email');
+            $email->setFrom(env('email.from'), env('email.fromName'));
+            $email->setTo(env('email.defaultRecipient'));
+            $email->setSubject('A post was edited on Swiccy');
+            $email->setMessage($message);
+            $email->send();
+        } catch (\Exception $e) {
+            log_message('error', '[ERROR] {exception} in [file] at [line]', ['exception' => $e]);
         }
 
         return redirect()->to(route('posts.index'))->with('success', _('Post updated succesfully!'));
