@@ -26,6 +26,13 @@ You can upload multiple images in your post.
 ## Editing a post
 You can edit a post that you have submitted, but it will then need to be approved again, so please double check before submitting. It might get rejected if you completely change the original post. Instead, consider submitting a new post if you have something very different to exchange.
 
+## TODO
+Here are some planned features that have not been implemented yet:
+- Search posts by city
+- Search posts by text
+- Add country field to posts (?)
+- Boosting posts visibility
+
 ## Disclaimer
 Of course this is just a platform that allows you to post something. You take full responsibilities for what you post and what you give/receive.
 

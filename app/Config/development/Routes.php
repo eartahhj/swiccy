@@ -4,12 +4,10 @@ use App\Controllers\PageController;
 use App\Controllers\PostController;
 use App\Controllers\UserController;
 use App\Controllers\AdminController;
-use App\Controllers\LoginController;
-// use App\Controllers\ActionController;
-use App\Controllers\RegisterController;
+use App\Controllers\SwiccyLoginController;
+use App\Controllers\SwiccyRegisterController;
 use App\Controllers\SwiccyActionController;
 use App\Controllers\SwiccyMagicLinkController;
-// use App\Controllers\MagicLinkController;
 
 $routes->group('admin', ['filter' => 'admin'], function() use ($routes) {
     $routes->get('/', [AdminController::class, 'index'], ['as' => 'admin.index']);
@@ -67,12 +65,12 @@ $routes->group('en', function() use ($routes) {
     $routes->post('resend-activation-email', [UserController::class, 'requestActivationEmailAction'], ['as' => 'en.resend.activation.email.action']);
 
 
-    $routes->get('login', [LoginController::class, 'loginView'], ['as' => 'en.login']);
-    $routes->post('login', [LoginController::class, 'loginAction'], ['as' => 'en.login.create']);
-    $routes->get('logout', [LoginController::class, 'logoutAction'], ['as' => 'en.logout']);
+    $routes->get('login', [SwiccyLoginController::class, 'loginView'], ['as' => 'en.login']);
+    $routes->post('login', [SwiccyLoginController::class, 'loginAction'], ['as' => 'en.login.create']);
+    $routes->get('logout', [SwiccyLoginController::class, 'logoutAction'], ['as' => 'en.logout']);
 
-    $routes->get('register', [RegisterController::class, 'registerView'], ['as' => 'en.register']);
-    $routes->post('register', [RegisterController::class, 'registerAction'], ['as' => 'en.register.create']);
+    $routes->get('register', [SwiccyRegisterController::class, 'registerView'], ['as' => 'en.register']);
+    $routes->post('register', [SwiccyRegisterController::class, 'registerAction'], ['as' => 'en.register.create']);
 
     $routes->get('auth/a/show', [SwiccyActionController::class, 'show'], ['as' => 'en.auth.show']);
     $routes->post('auth/a/verify', [SwiccyActionController::class, 'verify'], ['as' => 'en.auth.verify']);
@@ -112,12 +110,12 @@ $routes->group('it', function() use ($routes) {
     $routes->get('reinvia-email-attivazione', [UserController::class, 'requestActivationEmailView'], ['as' => 'it.resend.activation.email']);
     $routes->post('reinvia-email-attivazione', [UserController::class, 'requestActivationEmailAction'], ['as' => 'it.resend.activation.email.action']);
 
-    $routes->get('accedi', [LoginController::class, 'loginView'], ['as' => 'it.login']);
-    $routes->post('accedi', [LoginController::class, 'loginAction'], ['as' => 'it.login.create']);
-    $routes->get('esci', [LoginController::class, 'logoutAction'], ['as' => 'it.logout']);
+    $routes->get('accedi', [SwiccyLoginController::class, 'loginView'], ['as' => 'it.login']);
+    $routes->post('accedi', [SwiccyLoginController::class, 'loginAction'], ['as' => 'it.login.create']);
+    $routes->get('esci', [SwiccyLoginController::class, 'logoutAction'], ['as' => 'it.logout']);
 
-    $routes->get('registrati', [RegisterController::class, 'registerView'], ['as' => 'it.register']);
-    $routes->post('registrati', [RegisterController::class, 'registerAction'], ['as' => 'it.register.create']);
+    $routes->get('registrati', [SwiccyRegisterController::class, 'registerView'], ['as' => 'it.register']);
+    $routes->post('registrati', [SwiccyRegisterController::class, 'registerAction'], ['as' => 'it.register.create']);
 
     $routes->get('auth/a/show', [SwiccyActionController::class, 'show'], ['as' => 'it.auth.show']);
     $routes->post('auth/a/verify', [SwiccyActionController::class, 'verify'], ['as' => 'it.auth.verify']);

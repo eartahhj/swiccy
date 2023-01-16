@@ -6,52 +6,15 @@ use App\Models\UserModel;
 use App\Libraries\Authentication;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\RedirectResponse;
+use CodeIgniter\Shield\Controllers\LoginController;
 
-class LoginController extends BaseController
+class SwiccyLoginController extends LoginController
 {
-    // protected $helpers = ['setting', 'route'];
-
     public function index()
     {
         return view('Login/index');
     }
-
-    public function create()
-    {
-        $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
-
-        $auth = service('auth');
-
-        if ($auth->login($email, $password)) {
-            return redirect()->to('/login')->with('info', 'Logged in!');
-        } else {
-            return redirect()->back()->withInput()->with('warning', 'Invalid credentials');
-        }
-
-        // $users = new UserModel();
-
-        // $user = $users->where('email', $email)->first();
-
-        // if ($user === null) {
-        //     return redirect()->back()->withInput()->with('warning', 'Email not found');
-        // }
-
-        // if (password_verify($password, $user->password_hash)) {
-        //     $session = session();
-        //     $session->regenerate();
-        //     $session->set('user_id', $user->id);
-        //     return redirect()->to('/login')->with('info', 'Logged in!');
-        // }
-    }
-
-    public function delete()
-    {
-        $auth = service('auth')->logout();
-
-        return redirect()->to()->with('info', 'Logout successful!');
-    }
-
+    
     public function loginView()
     {
         if (auth()->loggedIn()) {
@@ -106,23 +69,7 @@ class LoginController extends BaseController
         return redirect()->to(config('Auth')->loginRedirect())->withCookies();
     }
 
-    protected function getValidationRules(): array
-    {
-        return setting('Validation.login') ?? [
-            // 'username' => [
-            //     'label' => 'Auth.username',
-            //     'rules' => config('AuthSession')->usernameValidationRules,
-            // ],
-            'email' => [
-                'label' => 'Auth.email',
-                'rules' => config('AuthSession')->emailValidationRules,
-            ],
-            'password' => [
-                'label' => 'Auth.password',
-                'rules' => 'required',
-            ],
-        ];
-    }
+
 
     public function logoutAction(): RedirectResponse
     {

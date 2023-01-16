@@ -40,13 +40,7 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [
-        'form',
-        'auth',
-        'route',
-        'page',
-        'cookiepolicy'
-    ];
+    protected $helpers = [];
 
     // public ?Twig $twig = null;
     public string $language = 'en';
@@ -61,7 +55,7 @@ abstract class BaseController extends Controller
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        $this->helpers = array_merge($this->helpers, ['setting']);
+        $this->helpers = array_merge($this->helpers, ['setting', 'form', 'auth', 'route', 'page','cookiepolicy']);
 
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);

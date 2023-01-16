@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
-use CodeIgniter\Events\Events;
-use CodeIgniter\HTTP\RedirectResponse;
-use CodeIgniter\Shield\Authentication\Authenticators\Session;
-use CodeIgniter\Shield\Entities\User;
-use CodeIgniter\Shield\Exceptions\ValidationException;
 use App\Models\UserModel;
+use CodeIgniter\Events\Events;
+use App\Controllers\BaseController;
+use CodeIgniter\Shield\Entities\User;
+use CodeIgniter\HTTP\RedirectResponse;
+use CodeIgniter\Shield\Controllers\RegisterController;
+use CodeIgniter\Shield\Exceptions\ValidationException;
+use CodeIgniter\Shield\Authentication\Authenticators\Session;
 
 /**
  * Class RegisterController
@@ -18,7 +19,7 @@ use App\Models\UserModel;
  * Handles displaying registration form,
  * and handling actual registration flow.
  */
-class RegisterController extends BaseController
+class SwiccyRegisterController extends RegisterController
 {
 
     /**
