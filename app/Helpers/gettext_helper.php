@@ -3,7 +3,16 @@
 if (!function_exists('loadGettext')) {
     function loadGettext(string $language)
     {
-        $domain = 'swiccy_' . $language;
+        if (env('CI_ENVIRONMENT') == 'development') {
+            $domain = 'swiccy_' . $language;
+        } elseif (env('CI_ENVIRONMENT') == 'production') {
+            $domain = 'swiccy';
+            // Converting language codes for Unix
+            $language = match ($language) {
+                'en' => 'en_US',
+                'it' => 'it_IT'
+            };
+        }
 
         if (defined('LC_ALL')) {
             setlocale(LC_ALL, $language);
