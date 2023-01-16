@@ -55,7 +55,7 @@ abstract class BaseController extends Controller
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        $this->helpers = array_merge($this->helpers, ['setting', 'form', 'auth', 'route', 'page','cookiepolicy']);
+        $this->helpers = array_merge($this->helpers, ['setting', 'form', 'auth', 'route', 'page','cookiepolicy', 'gettext']);
 
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
@@ -80,11 +80,7 @@ abstract class BaseController extends Controller
 
         $this->languages = config('app')->languages;
         
-        $domain = 'swiccy_' . $this->language;
-        setlocale(LC_ALL, $this->language);
-        bindtextdomain($domain, APPPATH . 'Language/locale');
-        textdomain($domain);
-        bind_textdomain_codeset($domain, 'UTF-8');
+        loadGettext($this->language);
 
         $this->user = auth()->user() ?? null;
 

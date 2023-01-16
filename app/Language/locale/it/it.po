@@ -747,10 +747,10 @@ msgid "Turn off animations"
 msgstr "Disattiva animazioni"
 
 msgid "All posts"
-msgstr "Tutti i post"
+msgstr "Tutti gli annunci"
 
 msgid "New post"
-msgstr "Nuovo post"
+msgstr "Nuovo annuncio"
 
 msgid "Animations"
 msgstr "Animazioni"
