@@ -51,6 +51,6 @@ class PageController extends BaseController
         $users = model(UserModel::class);
         $author = $users->where('id', $page->user_id)->first();
 
-        return view('pages/show', compact('page', 'author'));
+        return view('Pages/show', compact('page', 'author'));
     }
 }
