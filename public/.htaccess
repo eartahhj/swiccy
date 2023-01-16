@@ -31,10 +31,10 @@ Options All -Indexes
 	# request to the front controller, index.php
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
-	# RewriteRule ^([\s\S]*)$ index.php/$1 [L,NC,QSA] # Quella di default, non funziona per me
+	# RewriteRule ^([\s\S]*)$ index.php/$1 [L,NC,QSA] # Default rule, does not work on my server
 	# https://codeigniter.com/user_guide/general/urls.html?highlight=rewriterule
-	# RewriteRule ^(.*)$ index.php/$1 [L] # Quella nella documentazione, non funziona
-	RewriteRule . /index.php [L] # La mia, funziona
+	# RewriteRule ^(.*)$ index.php/$1 [L] # The docs rule, does not work either
+	RewriteRule . /index.php [L] # My own, works at least...
 
 	# Ensure Authorization header is passed along
 	RewriteCond %{HTTP:Authorization} .

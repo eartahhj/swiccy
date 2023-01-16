@@ -5,9 +5,11 @@ use App\Controllers\PostController;
 use App\Controllers\UserController;
 use App\Controllers\AdminController;
 use App\Controllers\LoginController;
-use App\Controllers\ActionController;
+// use App\Controllers\ActionController;
 use App\Controllers\RegisterController;
-use App\Controllers\MagicLinkController;
+use App\Controllers\SwiccyActionController;
+use App\Controllers\SwiccyMagicLinkController;
+// use App\Controllers\MagicLinkController;
 
 $routes->group('admin', ['filter' => 'admin'], function() use ($routes) {
     $routes->get('/', [AdminController::class, 'index'], ['as' => 'admin.index']);
@@ -72,13 +74,13 @@ $routes->group('en', function() use ($routes) {
     $routes->get('register', [RegisterController::class, 'registerView'], ['as' => 'en.register']);
     $routes->post('register', [RegisterController::class, 'registerAction'], ['as' => 'en.register.create']);
 
-    $routes->get('auth/a/show', [ActionController::class, 'show'], ['as' => 'en.auth.show']);
-    $routes->post('auth/a/verify', [ActionController::class, 'verify'], ['as' => 'en.auth.verify']);
-    $routes->post('auth/a/handle', [ActionController::class, 'handle'], ['as' => 'en.auth.handle']);
+    $routes->get('auth/a/show', [SwiccyActionController::class, 'show'], ['as' => 'en.auth.show']);
+    $routes->post('auth/a/verify', [SwiccyActionController::class, 'verify'], ['as' => 'en.auth.verify']);
+    $routes->post('auth/a/handle', [SwiccyActionController::class, 'handle'], ['as' => 'en.auth.handle']);
     
-    $routes->get('login/magic-link', [MagicLinkController::class, 'loginView'], ['as' => 'en.magic.link']);
-    $routes->post('login/magic-link', [MagicLinkController::class, 'loginAction'], ['as' => 'en.magic.link.action']);
-    $routes->get('login/verify-magic-link', [MagicLinkController::class, 'verify'], ['as' => 'en.verify.magic.link']);
+    $routes->get('login/magic-link', [SwiccyMagicLinkController::class, 'loginView'], ['as' => 'en.magic.link']);
+    $routes->post('login/magic-link', [SwiccyMagicLinkController::class, 'loginAction'], ['as' => 'en.magic.link.action']);
+    $routes->get('login/verify-magic-link', [SwiccyMagicLinkController::class, 'verify'], ['as' => 'en.verify.magic.link']);
 
     $routes->get('pages/(:any)', [PageController::class, 'show'], ['as' => 'en.pages.show']);
 });
@@ -117,13 +119,13 @@ $routes->group('it', function() use ($routes) {
     $routes->get('registrati', [RegisterController::class, 'registerView'], ['as' => 'it.register']);
     $routes->post('registrati', [RegisterController::class, 'registerAction'], ['as' => 'it.register.create']);
 
-    $routes->get('auth/a/show', [ActionController::class, 'show'], ['as' => 'it.auth.show']);
-    $routes->post('auth/a/verify', [ActionController::class, 'verify'], ['as' => 'it.auth.verify']);
-    $routes->post('auth/a/handle', [ActionController::class, 'handle'], ['as' => 'it.auth.handle']);
+    $routes->get('auth/a/show', [SwiccyActionController::class, 'show'], ['as' => 'it.auth.show']);
+    $routes->post('auth/a/verify', [SwiccyActionController::class, 'verify'], ['as' => 'it.auth.verify']);
+    $routes->post('auth/a/handle', [SwiccyActionController::class, 'handle'], ['as' => 'it.auth.handle']);
     
-    $routes->get('accedi/magic-link', [MagicLinkController::class, 'loginView'], ['as' => 'it.magic.link']);
-    $routes->post('accedi/magic-link', [MagicLinkController::class, 'loginAction'], ['as' => 'it.magic.link.action']);
-    $routes->get('accedi/verifica-magic-link', [MagicLinkController::class, 'verify'], ['as' => 'it.verify.magic.link']);
+    $routes->get('accedi/magic-link', [SwiccyMagicLinkController::class, 'loginView'], ['as' => 'it.magic.link']);
+    $routes->post('accedi/magic-link', [SwiccyMagicLinkController::class, 'loginAction'], ['as' => 'it.magic.link.action']);
+    $routes->get('accedi/verifica-magic-link', [SwiccyMagicLinkController::class, 'verify'], ['as' => 'it.verify.magic.link']);
 
     $routes->get('pagine/(:any)', [PageController::class, 'show'], ['as' => 'it.pages.show']);
 
