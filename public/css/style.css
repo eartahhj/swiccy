@@ -86,7 +86,7 @@ form fieldset legend { background-color:#222; color:#eee;  padding:0.3rem 1rem; 
 
 .switch label { line-height:normal; vertical-align:middle; }
 .switch .toggle { display:inline-block; vertical-align:middle; background-color:var(--blue-dark); border-radius:1rem; color:#fff; width:2.5rem; }
-.switch .toggle-knob { display:inline-block; vertical-align:middle; background-color:#fff; width:1rem; height:1rem; border-radius:50%; position:relative; top:-3px; left:-0.65rem; }
+.switch .toggle-knob { display:inline-block; vertical-align:middle; background-color:#fff; width:1rem; height:1rem; border-radius:50%; position:relative; top:-2px; left:-0.65rem; }
 .switch-handler-label { cursor:pointer; }
 
 .has-animation.can-hide { display:none !important; }
@@ -134,9 +134,10 @@ form fieldset legend { background-color:#222; color:#eee;  padding:0.3rem 1rem; 
 #header-main .logo.animated img { animation:spin 7s infinite; animation-delay:3s; animation-timing-function:ease-in-out; }
 #header-main a { color:#fff; text-decoration:none; }
 #header-main .switch { padding:0.3rem 1rem; border-radius:0.3rem; background-color:#fff; color:#222; margin-right:0.5rem; }
+#header-main .logo p { margin:0; color:#fff; font-size:1.2rem; text-align:center; }
 
 #nav-main { background-color:transparent; }
-#nav-main .navbar-start a { font-size:1.25rem; }
+#nav-main .navbar-start a { font-size:1.05rem; }
 #nav-main .navbar-item:hover { background-color:var(--indigo); border-radius:0.25rem; }
 #nav-main .navbar-start a:focus { background-color:var(--color-purple-dark); color:var(--teal); border-radius:0.25rem; }
 
@@ -213,7 +214,11 @@ footer img { height:6rem; width:auto; }
 
     .template-post .grid.grid-7-3 { align-items:stretch; }
 
+    #header-main .logo p { font-size:1.5rem; }
+
     #header-main-grid { grid-template-columns:7rem 1fr; align-items:center; column-gap:2rem; }
+
+    #nav-main .navbar-start a { font-size:1.25rem; }
 
     .navbar-end { align-self:center; }
 
@@ -225,6 +230,9 @@ footer img { height:6rem; width:auto; }
 
 @media only screen and (max-width:1023px) {
     .container { padding-left:1rem; padding-right:1rem; }
+
+    #navbar-auth { text-align:center; padding-top:0.5rem; padding-bottom:0.5rem; }
+    #navbar-auth-user-menu label { justify-content:center; }
 }
 
 @media only screen and (min-width:768px) and (max-width:1023px) {
@@ -234,6 +242,8 @@ footer img { height:6rem; width:auto; }
 @media only screen and (min-width:1024px) {
     .grid { grid-template-columns:repeat(3, 1fr); }
     .grid-2cols { grid-template-columns:repeat(2, 1fr); }
+
+    .switch .toggle-knob { top:-3px; }
 
     #header-main { padding-top:4rem; padding-bottom:4rem; }
 

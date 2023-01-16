@@ -101,6 +101,7 @@
                     <a href="<?= route('home')?>">
                         <img src="/img/logo-notext.png" alt="<?= env('app.name') ?>" width="90" height="90" />
                     </a>
+                    <p><?= env('app.name') ?></p>
                 </div>
                 <nav id="nav-main" class="navbar">
                     <ul class="navbar-start">
