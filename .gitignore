@@ -126,4 +126,9 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
-app/Language/locale/it/en.po
+*.bat
+
+app/Language/locale/*
+app/Language/locale/it_IT/*.po
+app/Language/locale/*.po
+app/Language/locale/*.pot

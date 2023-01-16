@@ -138,7 +138,7 @@
             <p class="mb-3"><?= _('Please note that by sending this post, you acknowledge that it must be legal, and that the responsibility is fully on you.') ?></p>
             <label class="checkbox">
                 <input type="checkbox" required="required">
-                <?= _('I declare that the exchange I am posting is 100% legal, and I take full responsibility for it.') ?>
+                <?= _('I declare that the exchange I am posting is fully legal, and I take full responsibility for it.') ?>
             </label>
         </div>
 

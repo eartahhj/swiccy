@@ -68,11 +68,21 @@ abstract class BaseController extends Controller
         
         // $this->twig = new Twig();
 
-        $path = service('uri')->getPath();
-        $chosenLanguage = substr($path, 0, 2);
         $supportedLocales = config('app')->supportedLocales;
+        $preferredLanguage = env('app.languageDefault');
 
-        if (in_array($chosenLanguage, $supportedLocales)) {
+        if ($request->getGet('lang')) {
+            $chosenLanguage = $request->getGet('lang');
+            if (in_array($chosenLanguage, $supportedLocales)) {
+                session()->set('preferredLanguage', $chosenLanguage);
+            }
+        }
+
+        if (session()->get('preferredLanguage')) {
+            $request->setLocale(session()->get('preferredLanguage'));
+        } else {
+            $path = service('uri')->getPath();
+            $chosenLanguage = substr($path, 0, 2);
             $request->setLocale($chosenLanguage);
         }
         
