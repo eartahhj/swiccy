@@ -68,8 +68,6 @@ abstract class BaseController extends Controller
         
         // $this->twig = new Twig();
 
-        $language = '';
-
         $path = service('uri')->getPath();
         $chosenLanguage = substr($path, 0, 2);
         $supportedLocales = config('app')->supportedLocales;
@@ -82,8 +80,8 @@ abstract class BaseController extends Controller
 
         $this->languages = config('app')->languages;
         
-        $domain = 'swiccy_' . $language;
-        setlocale(LC_ALL, $language);
+        $domain = 'swiccy_' . $this->language;
+        setlocale(LC_ALL, $this->language);
         bindtextdomain($domain, APPPATH . 'Language/locale');
         textdomain($domain);
         bind_textdomain_codeset($domain, 'UTF-8');

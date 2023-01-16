@@ -105,7 +105,7 @@ $routes->group('it', function() use ($routes) {
     $routes->put('utente/cambia-avatar', [UserController::class, 'changeAvatarAction'], ['as' => 'it.user.change.avatar']);
     $routes->get('user/conferma-cambio-email', [UserController::class, 'confirmEmailChangeView'], ['as' => 'it.user.confirm.email.change.view']);
     $routes->post('user/conferma-cambio-email', [UserController::class, 'confirmEmailChangeAction'], ['as' => 'it.user.confirm.email.change.action']);
-    $routes->get('attiva-account', [UserController::class, 'activateAccountView'], ['as' => 'it.activate.account']);
+    $routes->get('attiva-account', [UserController::class, 'activateAccountView'], ['as' => 'it.activate.account.view']);
     $routes->post('attiva-account', [UserController::class, 'activateUserByCode'], ['as' => 'it.activate.account.action']);
     $routes->get('reinvia-email-attivazione', [UserController::class, 'requestActivationEmailView'], ['as' => 'it.resend.activation.email']);
     $routes->post('reinvia-email-attivazione', [UserController::class, 'requestActivationEmailAction'], ['as' => 'it.resend.activation.email.action']);
