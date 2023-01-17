@@ -247,7 +247,7 @@
                             <span class="icon is-large" aria-hidden="true">
                                 <i class="fab fa-github fa-3x"></i>
                             </span>
-                            <a href="#" rel="external noopener" target="_blank">
+                            <a href="https://github.com/eartahhj/swiccy" rel="external noopener" target="_blank">
                                 Github
                                 <span class="sr-only"><?= _('(opens in a new window)') ?></span>
                             </a>

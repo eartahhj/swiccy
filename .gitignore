@@ -59,6 +59,7 @@ writable/session/*
 
 writable/uploads/*
 !writable/uploads/index.html
+public/uploads/
 public/uploads/*
 
 writable/debugbar/*

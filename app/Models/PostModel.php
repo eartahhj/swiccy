@@ -29,8 +29,8 @@ class PostModel extends Model
         'text' => 'required|min_length[10]|max_length[2000]',
         'city' => 'required|min_length[2]|max_length[200]',
         'email' => 'required|valid_email|max_length[200]',
-        'phone_number' => 'min_length[5]|max_length[20]',
-        'address' => 'min_length[5]|max_length[200]',
+        'phone_number' => 'max_length[20]',
+        'address' => 'max_length[200]',
         'quantity_give' => 'required|numeric|greater_than[0]|less_than[1000]',
         'quantity_receive' => 'required|numeric|greater_than[0]|less_than[1000]',
     ];

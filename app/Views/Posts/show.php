@@ -14,6 +14,7 @@
 
         <article>
             <h1 class="title is-3"><?= esc($post->title) ?></h1>
+            <p class="date mb-5"><?= sprintf(_('Posted at: %s'), formatDate($post->created_at)) ?></p>
             
             <div class="grid grid-7-3">
                 <article id="post-details" class="grid-col">

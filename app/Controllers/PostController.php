@@ -175,9 +175,20 @@ class PostController extends BaseController
             $images = $this->request->getFileMultiple('images');
         }
         
-        if ($images and !$this->validate([
-            'images[]' => 'uploaded[images]|max_dims[images,1000,1000]|max_size[images,800]|is_image[images]|mime_in[images,image/jpeg,image/png,image/webp,image/avif]|ext_in[images,jpg,jpeg,png,webp,avif]'
-        ])) {
+        if ($images and !$this->validate(
+            [
+                'images[]' => 'uploaded[images]|max_dims[images,1000,1000]|max_size[images,800]|is_image[images]|mime_in[images,image/jpeg,image/png,image/webp,image/avif]|ext_in[images,jpg,jpeg,png,webp,avif]'
+            ],
+            [
+                'images[]' => [
+                    'max_dims' => _('The images can be maximum 1000x1000px'),
+                    'max_size' => _('The images can have a maximum size of 500KB each'),
+                    'is_image' => _('The file you uploaded seems not to be an image'),
+                    'mime_in' => _('Some types of files you selected are not allowed'),
+                    'ext_in' => _('Some types of files you selected are not allowed')
+                ]
+            ]
+        )) {
             return redirect()->back()->with('errors', $this->validator->getErrors())->withInput();
         }
 

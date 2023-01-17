@@ -21,6 +21,7 @@ class CreateTablePosts extends Migration
             'city' => ['type' => 'VARCHAR', 'constraint' => 255],
             'address' => ['type' => 'VARCHAR', 'constraint' => 255],
             'approved' => ['type' => 'BOOLEAN', 'default' => false],
+            'language' => ['type' => 'VARCHAR', 'constraint' => 50],
             'created_at' => ['type' => 'DATETIME', 'null' => true, 'default' => new RawSql('CURRENT_TIMESTAMP')],
             'updated_at' => ['type' => 'DATETIME', 'null' => true, 'default' => null],
             'deleted_at' => ['type' => 'DATETIME', 'null' => true, 'default' => null],

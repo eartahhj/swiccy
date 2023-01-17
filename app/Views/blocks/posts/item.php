@@ -4,6 +4,7 @@
         <?= esc($post->title) ?>
         </a>
     </h2>
+    <p class="date mb-2"><?= sprintf(_('Posted at: %s'), formatDate($post->created_at)) ?></p>
     <p><?= nl2br(esc($post->text)) ?></p>
     <p><?= sprintf(_('Approved: %s'), $post->approved ? _('Yes') : _('No')) ?></p>
 

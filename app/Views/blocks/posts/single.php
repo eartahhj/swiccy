@@ -4,7 +4,7 @@
             <?=esc($post->title)?>
         </a>
     </h3>
-    <p class="date mb-2"><?= sprintf(_('Posted at: %s'), $post->created_at) ?></p>
+    <p class="date mb-2"><?= sprintf(_('Posted at: %s'), formatDate($post->created_at)) ?></p>
 
     <?php if ($authUser):?>
     <p class="mt-2">

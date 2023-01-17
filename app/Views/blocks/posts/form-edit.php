@@ -130,16 +130,18 @@
             <p class="help"><?= _('You can select up to 5 images. Supported Formats: JPEG, PNG, WEBP or AVIF. Maximum dimensions: 1000x1000px. Maximum size for each image: 500KB.') ?></p>
             <div id="images-previews" class="images-preview"></div>
             <?php if (!empty($postImages)): ?>
-            <p><?= _('Current images') ?></p>
-            <ul>
-                <?php foreach($postImages as $image): ?>
-                    <li>
-                        <a href="<?= '/uploads/' . urlencode($image->filename) ?>">
-                            <img src="<?= '/uploads/' . urlencode($image->filename) ?>" alt="<?= esc($image->alternate_text) ?>" width="<?= intval($image->width) ?>" height="<?= intval($image->height) ?>">
-                        </a>
-                    </li>
-                <?php endforeach ?>
-            </ul>
+            <div id="post-current-images">
+                <p><?= _('Current images') ?></p>
+                <ul>
+                    <?php foreach($postImages as $image): ?>
+                        <li>
+                            <a href="<?= '/uploads/' . urlencode($image->filename) ?>">
+                                <img src="<?= '/uploads/' . urlencode($image->filename) ?>" alt="<?= esc($image->alternate_text) ?>" width="<?= intval($image->width) ?>" height="<?= intval($image->height) ?>">
+                            </a>
+                        </li>
+                    <?php endforeach ?>
+                </ul>
+            </div>
             <?php endif?>
         </div>
 

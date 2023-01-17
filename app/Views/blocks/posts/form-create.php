@@ -143,6 +143,6 @@
         </div>
 
         <div class="buttons mt-5">
-            <button type="submit" class="button is-dark"><?=_('Post')?></button>
+            <button type="submit" class="button is-dark"><?=_('Send')?></button>
         </div>
         <?= form_close() ?>
