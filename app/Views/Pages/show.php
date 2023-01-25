@@ -4,7 +4,7 @@
 
 <?= $this->section('content')?>
 
-<section class="template-standard">
+<section class="template-default template-standard">
     <div class="container">
         <?php if (!$page->published and $authUser and $authUser->inGroup('admin', 'superadmin')): ?>
             <div class="message is-warning">

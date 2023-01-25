@@ -49,7 +49,7 @@ class PageController extends BaseController
         }
 
         $users = model(UserModel::class);
-        $author = $users->where('id', $page->user_id)->first();
+        $author = $users->where('id', $page->user_creator_id)->first();
 
         return view('Pages/show', compact('page', 'author'));
     }

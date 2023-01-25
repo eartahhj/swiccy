@@ -4,7 +4,7 @@
 
 <?= $this->section('content')?>
 
-<section class="template-admin">
+<section class="template-default template-admin">
     <div class="container">
         <div class="box">
             <h1 class="title is-2"><?=_('Edit post')?></h1>

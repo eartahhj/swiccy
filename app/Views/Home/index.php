@@ -4,7 +4,7 @@
 
 <?= $this->section('content')?>
 
-<div class="template-homepage">
+<div class="template-default template-homepage">
     <section id="swiccy-description">
         <div class="container">
             <h1 class="title is-2 mb-6"><?= _('Swiccy') ?></h1>

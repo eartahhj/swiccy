@@ -32,6 +32,7 @@ Here are some planned features that have not been implemented yet:
 - Search posts by text
 - Add country field to posts (?)
 - Boosting posts visibility
+- Paginations
 
 ## Disclaimer
 Of course this is just a platform that allows you to post something. You take full responsibilities for what you post and what you give/receive.

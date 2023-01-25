@@ -68,9 +68,12 @@ form fieldset legend { background-color:#222; color:#eee;  padding:0.3rem 1rem; 
 .dropdown label .icon { top:3px; position:relative; background-image:url('/img/svg/arrow-down-white.svg'); display:block; width:2rem; height:2rem; background-size:auto 100%; }
 .dropdown input[type="checkbox"]:checked ~ label .icon { background-image:url('/img/svg/arrow-up-white.svg'); }
 .dropdown .text { color:#fff; }
-.dropdown .dropdown-content { background-color:var(--blue-dark); padding:0; }
-.dropdown li a { display:block; padding:0.5rem 0.5rem; }
-.dropdown li:hover { background-color:var(--color-purple-dark); }
+.dropdown .dropdown-content { background-color:transparent; padding:0; }
+.dropdown li:first-child a { border-top-left-radius:0.3rem; border-top-right-radius:0.3rem;  }
+.dropdown li:last-child a { border-bottom-left-radius:0.3rem; border-bottom-right-radius:0.3rem; }
+.dropdown li a { display:block; padding:0.5rem 0.5rem; background-color:var(--purple); }
+.dropdown li:hover a { background-color:var(--color-purple-dark); }
+.dropdown-content { border-radius:0; }
 
 .logo a { text-decoration:none; }
 
@@ -93,9 +96,8 @@ form fieldset legend { background-color:#222; color:#eee;  padding:0.3rem 1rem; 
 
 .section-header { padding-top:1rem; padding-bottom:1rem; }
 
-.template-homepage { padding-top:3rem; }
+.template-default { padding-top:3rem; padding-bottom:3rem; }
 
-.template-post { padding-top:3rem; padding-bottom:3rem; }
 .template-post aside { background-color:var(--light-blue); padding:1rem; }
 .template-post aside h3 { margin-top:1rem; margin-bottom:0.5rem !important; }
 .template-post aside dt { font-weight:bold; }
@@ -107,7 +109,6 @@ form fieldset legend { background-color:#222; color:#eee;  padding:0.3rem 1rem; 
 .template-post #post-images ul { display:grid; grid-template-columns:repeat(auto-fit, minmax(50px, 100px)); align-items:stretch; column-gap:1rem; row-gap:1rem; }
 .template-post #post-images img { width:auto; max-height:100px; border:1px solid #ddd; }
 
-.template-standard { padding-top:3rem; padding-bottom:3rem; }
 .template-standard .text { font-size:1.2rem; line-height:150%; }
 .template-standard .text h1 { font-size:2rem; font-weight:bold; margin-bottom:2rem; }
 .template-standard .text h2 { font-size:1.6rem; font-weight:bold; margin-top:2rem; margin-bottom:1rem; }
@@ -144,7 +145,6 @@ form fieldset legend { background-color:#222; color:#eee;  padding:0.3rem 1rem; 
 #nav-main .navbar-start, #nav-main .navbar-end { display:flex; justify-content:center; }
 
 #header-main .dropdown { background-color:var(--indigo); border-radius:0.3rem; }
-#header-main .dropdown .dropdown-content { background-color:var(--purple); }
 
 label[for="navbar-auth-handler"] { color:#fff; cursor:pointer; display:flex; align-items:center; }
 #navbar-auth { background-color:var(--color-purple-dark); align-items:center; }

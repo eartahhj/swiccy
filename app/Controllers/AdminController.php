@@ -29,20 +29,6 @@ class AdminController extends BaseController
         return view('Admin/index', []);
     }
 
-    // public function users()
-    // {
-    //     $users = $this->users->paginate(20);
-        
-    //     return view('Admin/users/index', ['users' => $users, 'pager' => $this->users->pager]);
-    // }
-
-    // public function user()
-    // {
-    //     $user = $this->users->find($id);
-
-    //     return view('Users/show', ['user' => $user]);
-    // }
-
     public function editUser(int $id)
     {
         $user = $this->users->find($id);

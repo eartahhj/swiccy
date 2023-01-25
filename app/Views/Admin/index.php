@@ -4,7 +4,7 @@
 
 <?= $this->section('content')?>
 
-<section id="panel-index" class="template-admin">
+<section id="panel-index" class="template-default template-admin">
     <div class="container">
         <div class="box">
             <h1 class="title is-3"><?=_('Administration panel')?></h1>

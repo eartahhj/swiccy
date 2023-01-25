@@ -1,3 +1,5 @@
+.template-homepage { padding-bottom:0; }
+
 #home-latest-posts { margin-top:3rem; }
 #home-latest-posts ul { align-items:stretch; align-content:center; }
 #home-latest-posts li { background-color:var(--light-blue); border-radius:0.5rem; padding:1rem; }

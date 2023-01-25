@@ -71,6 +71,8 @@ abstract class BaseController extends Controller
         $supportedLocales = config('app')->supportedLocales;
         $preferredLanguage = env('app.languageDefault');
 
+        $chosenLanguage = '';
+
         if ($request->getGet('lang')) {
             $chosenLanguage = $request->getGet('lang');
             if (in_array($chosenLanguage, $supportedLocales)) {
@@ -82,8 +84,15 @@ abstract class BaseController extends Controller
             $request->setLocale(session()->get('preferredLanguage'));
         } else {
             $path = service('uri')->getPath();
-            $chosenLanguage = substr($path, 0, 2);
-            $request->setLocale($chosenLanguage);
+            
+            if (mb_strlen($path) >= 2) {
+                $chosenLanguage = substr($path, 0, 2);
+                if (in_array($chosenLanguage, $supportedLocales)) {
+                    $request->setLocale($chosenLanguage);
+                }
+            } else {
+                $request->setLocale(env('app.languageDefault'));
+            }
         }
         
         $this->language = $request->getLocale();
@@ -120,6 +129,7 @@ abstract class BaseController extends Controller
 
         $matomoTracker = new MatomoTracker($matomoSiteId, $matomoUrl);
         $matomoTracker->setTokenAuth($matomoToken);
+        // TODO set matomo page title
 
         // TODO test gettext and publish website with pulling
 
@@ -133,14 +143,5 @@ abstract class BaseController extends Controller
         $view->setVar('languages', $this->languages);
         $view->setVar('showCookiePolicyBanner', $showCookiePolicyBanner);
         // $view->setVar('hasUserAcceptedTracking', $hasUserAcceptedTracking);
-
-        // $this->parser = \Config\Services::parser();
-        // $this->parser->setData([
-        //     'locale' => $this->language,
-        //     'templateJavascripts' => [],
-        //     'templateStylesheets' => [],
-        //     'isUserLogged' => auth()->loggedIn(),
-        //     'authUser' => auth()->user() ?? null
-        // ]);
     }
 }

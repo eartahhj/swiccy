@@ -6,7 +6,7 @@
 
 <?= $this->section('content')?>
 
-<section class="template-standard">
+<section class="template-default template-standard">
     <div class="container">
         <h1 class="title is-2"><?= _('Your posts') ?></h1>
         <?php if (empty($posts)): ?>

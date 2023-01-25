@@ -289,7 +289,7 @@
         <nav id="footer-bottom">
             <ul>
                 <li>
-                    <a href="https://www.differentdev.it" rel="external noopener"><?= _('Need a web developer? Hire me') ?></a>
+                    <a href="https://www.devlancer.it" rel="external noopener"><?= _('Need a web developer? Hire me') ?></a>
                 </li>
                 <li>
                     <a href="mailto:info@swiccy.it" rel="external noopener"><?= _('Want to advertise here? Email me') ?></a>

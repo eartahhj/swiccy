@@ -4,7 +4,7 @@
 
 <?= $this->section('content') ?>
 
-<section class="template-standard">
+<section class="template-default template-standard">
     <div class="container">
         <h2 class="title is-2"><?= _('Magic link sent') ?></h5>
 

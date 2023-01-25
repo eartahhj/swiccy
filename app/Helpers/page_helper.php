@@ -5,7 +5,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 if (!function_exists('getPageIdByUrl')) {
     function getPageIdByUrl(string $url, int $maxDigits = 10): int
     {
-        if (!preg_match('/^([1-9]{1,' . $maxDigits . '})/', $url, $matches)) {
+        if (!preg_match('/^([1-9]{1}[0-9]{0,' . $maxDigits - 1 . '})/', $url, $matches)) {
             return 0;
         }
     

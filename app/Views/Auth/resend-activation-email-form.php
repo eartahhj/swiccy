@@ -4,7 +4,7 @@
 
 <?= $this->section('content') ?>
 
-<section class="template-standard">
+<section class="template-default template-standard">
     <div class="container">
         <div class="box">
             <h1 class="title is-2"><?= _('Request a new activation email') ?></h1>

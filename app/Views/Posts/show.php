@@ -3,7 +3,7 @@
 <?=$this->section('title')?><?= esc($post->title) ?><?php $this->endSection()?>
 
 <?= $this->section('content')?>
-<section class="template-post">
+<section class="template-default template-post">
     <div class="container">
         <?php if (!$post->approved and $post->user_id == auth()->user()->id): ?>
             <div class="message is-warning">

@@ -6,7 +6,7 @@
 
 <?= $this->section('content')?>
 
-<section class="template-admin">
+<section class="template-default template-admin">
     <div class="container">
         <article>
             <h2 class="title is-3"><?= sprintf(_('Modifying user: %s'), esc($user->username)) ?></h2>
