@@ -289,10 +289,10 @@
         <nav id="footer-bottom">
             <ul>
                 <li>
-                    <a href="https://www.devlancer.it" rel="external noopener"><?= _('Need a web developer? Hire me') ?></a>
+                    <a href="<?= env('app.websiteAdmin') ?>" rel="external noopener"><?= _('Need a web developer? Hire me') ?></a>
                 </li>
                 <li>
-                    <a href="mailto:info@swiccy.it" rel="external noopener"><?= _('Want to advertise here? Email me') ?></a>
+                    <a href="mailto:<?= env('app.emailAdmin') ?>"><?= _('Want to advertise here? Email me') ?></a>
                 </li>
             </ul>
         </nav>
