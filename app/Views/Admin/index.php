@@ -1,9 +1,6 @@
 <?= $this->extend('Layouts/base') ?>
 
-<?=$this->section('title')?><?=_('Administration')?><?php $this->endSection()?>
-
 <?= $this->section('content')?>
-
 <section id="panel-index" class="template-default template-admin">
     <div class="container">
         <div class="box">

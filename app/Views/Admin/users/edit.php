@@ -1,9 +1,5 @@
 <?= $this->extend('Layouts/base') ?>
 
-<?=$this->section('title')?>
-<?= sprintf(_('User profile of %s'), esc($user->username)) ?>
-<?php $this->endSection()?>
-
 <?= $this->section('content')?>
 
 <section class="template-default template-admin">

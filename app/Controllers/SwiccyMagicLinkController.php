@@ -25,4 +25,18 @@ class SwiccyMagicLinkController extends MagicLinkController
 
         return parent::verify();
     }
+
+    public function loginView()
+    {
+        if (auth()->loggedIn()) {
+            return redirect()->to(config('Auth')->loginRedirect());
+        }
+
+        return view(setting('Auth.views')['magic-link-login'], ['pageTitle' => _('Use a Login Link')]);
+    }
+
+    protected function displayMessage(): string
+    {
+        return view(setting('Auth.views')['magic-link-message'], ['pageTitle' => _('Use a Login Link')]);
+    }
 }

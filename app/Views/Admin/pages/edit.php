@@ -1,7 +1,5 @@
 <?= $this->extend('Layouts/base') ?>
 
-<?=$this->section('title')?><?=_('Edit page')?><?php $this->endSection()?>
-
 <?= $this->section('content')?>
 
 <section class="template-default template-admin">

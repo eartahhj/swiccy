@@ -1,9 +1,6 @@
 <?= $this->extend('Layouts/base') ?>
 
-<?=$this->section('title')?><?= _('Change your password') ?><?php $this->endSection()?>
-
 <?= $this->section('content')?>
-
 <section class="template-default template-standard">
     <div class="container">
         <div class="box">

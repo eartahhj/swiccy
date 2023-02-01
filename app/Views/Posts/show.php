@@ -1,7 +1,5 @@
 <?= $this->extend('Layouts/base') ?>
 
-<?=$this->section('title')?><?= esc($post->title) ?><?php $this->endSection()?>
-
 <?= $this->section('content')?>
 <section class="template-default template-post">
     <div class="container">

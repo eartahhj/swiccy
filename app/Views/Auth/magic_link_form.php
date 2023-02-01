@@ -1,9 +1,6 @@
 <?= $this->extend(config('Auth')->views['layout']) ?>
 
-<?= $this->section('title') ?><?= _('Use a Login Link') ?><?= $this->endSection() ?>
-
 <?= $this->section('content') ?>
-
 <section class="template-default template-standard">
     <div class="container">
         <div class="box">

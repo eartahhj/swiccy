@@ -1,9 +1,6 @@
 <?= $this->extend('Layouts/base') ?>
 
-<?=$this->section('title')?><?=_('Manage posts')?><?php $this->endSection()?>
-
 <?= $this->section('content')?>
-
 <section class="template-default template-admin">
     <div class="container">
         <div class="box">

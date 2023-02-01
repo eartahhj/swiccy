@@ -1,11 +1,6 @@
 <?= $this->extend('Layouts/base') ?>
 
-<?=$this->section('title')?>
-<?= _('Your profile') ?>
-<?php $this->endSection()?>
-
 <?= $this->section('content')?>
-
 <section class="template-default template-standard">
     <div class="container">
         <h1 class="title is-2"><?= _('Your profile') ?></h1>

@@ -22,7 +22,7 @@ class PostController extends BaseController
     {
         $posts = $this->posts->where('approved', 1)->paginate(20);
 
-        return view('Posts/index', ['posts' => $posts, 'pager' => $this->posts->pager]);
+        return view('Posts/index', ['posts' => $posts, 'pager' => $this->posts->pager, 'pageTitle' => _('Posts')]);
     }
 
     public function show(int $id)
@@ -43,7 +43,9 @@ class PostController extends BaseController
         $imagesModel = model(ImageModel::class);
         $images = $imagesModel->where('post_id', $post->id)->find();
 
-        return view('Posts/show', compact('post', 'author', 'images'));
+        $pageTitle = esc($post->title);
+
+        return view('Posts/show', compact('post', 'author', 'images', 'pageTitle'));
     }
 
     public function new()
@@ -74,7 +76,8 @@ class PostController extends BaseController
             'templateJavascripts' => static::$templateJavascripts,
             'templateStylesheets' => static::$templateStylesheets,
             'user' => $user,
-            'email' => $email
+            'email' => $email,
+            'pageTitle' => _('New post')
         ]);
     }
 
@@ -154,7 +157,9 @@ class PostController extends BaseController
         $images = model(ImageModel::class);
         $postImages = $images->where('post_id', $post->id)->find();
 
-        return view('Posts/edit', compact('post', 'postImages'));
+        $pageTitle = _('Edit your post');
+
+        return view('Posts/edit', compact('post', 'postImages', 'pageTitle'));
     }
 
     public function update()

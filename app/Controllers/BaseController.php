@@ -143,6 +143,7 @@ abstract class BaseController extends Controller
         $view->setVar('languages', $this->languages);
         $view->setVar('showCookiePolicyBanner', $showCookiePolicyBanner);
         $view->setVar('matomoTracker', $matomoTracker);
+        $view->setVar('pageTitle', '');
         // $view->setVar('hasUserAcceptedTracking', $hasUserAcceptedTracking);
     }
 }

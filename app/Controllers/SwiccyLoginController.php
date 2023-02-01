@@ -12,7 +12,7 @@ class SwiccyLoginController extends LoginController
 {
     public function index()
     {
-        return view('Login/index');
+        return view('Login/index', ['pageTitle' => _('Login')]);
     }
     
     public function loginView()
@@ -34,7 +34,7 @@ class SwiccyLoginController extends LoginController
             return redirect()->to($route);
         }
 
-        return view(setting('Auth.views')['login']);
+        return view(setting('Auth.views')['login'], ['pageTitle' => _('Login')]);
     }
 
     public function loginAction(): RedirectResponse

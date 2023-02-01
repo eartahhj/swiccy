@@ -4,21 +4,22 @@ use App\Controllers\PageController;
 use App\Controllers\PostController;
 use App\Controllers\UserController;
 use App\Controllers\AdminController;
+use App\Controllers\AdminUserController;
 use App\Controllers\SwiccyLoginController;
-use App\Controllers\SwiccyRegisterController;
 use App\Controllers\SwiccyActionController;
+use App\Controllers\SwiccyRegisterController;
 use App\Controllers\SwiccyMagicLinkController;
 
 $routes->group('admin', ['filter' => 'admin'], function() use ($routes) {
     $routes->get('/', [AdminController::class, 'index'], ['as' => 'admin.index']);
 
-    $routes->get('users', [UserController::class, 'index'], ['as' => 'admin.users.index']);
-    $routes->get('users/(:num)', [UserController::class, 'show/$1'], ['as' => 'admin.users.show']);
-    $routes->put('users/edit/(:num)/groups', [AdminController::class, 'editUserGroups/$1'], ['as' => 'admin.users.edit.groups']);
-    $routes->put('users/edit/(:num)/permissions', [AdminController::class, 'editUserPermissions/$1'], ['as' => 'admin.users.edit.permissions']);
-    $routes->get('users/edit/(:num)', [AdminController::class, 'editUser/$1'], ['as' => 'admin.users.edit']);
-    $routes->put('users/edit/(:num)', [AdminController::class, 'updateUser/$1'], ['as' => 'admin.users.update']);
-    $routes->delete('users/delete/(:num)', [AdminController::class, 'deleteUser/$1'], ['as' => 'admin.users.delete']);
+    $routes->get('users', [AdminUserController::class, 'index'], ['as' => 'admin.users.index']);
+    $routes->get('users/(:num)', [AdminUserController::class, 'show/$1'], ['as' => 'admin.users.show']);
+    $routes->put('users/edit/(:num)/groups', [AdminUserController::class, 'editGroups/$1'], ['as' => 'admin.users.edit.groups']);
+    $routes->put('users/edit/(:num)/permissions', [AdminUserController::class, 'editPermissions/$1'], ['as' => 'admin.users.edit.permissions']);
+    $routes->get('users/edit/(:num)', [AdminUserController::class, 'edit/$1'], ['as' => 'admin.users.edit']);
+    $routes->put('users/edit/(:num)', [AdminUserController::class, 'update'], ['as' => 'admin.users.update']);
+    $routes->delete('users/delete/(:num)', [AdminUserController::class, 'delete'], ['as' => 'admin.users.delete']);
 
     $routes->get('posts', [AdminController::class, 'posts'], ['as' => 'admin.posts.index']);
     $routes->get('posts/(:num)', [PostController::class, 'show/$1'], ['as' => 'admin.posts.show']);

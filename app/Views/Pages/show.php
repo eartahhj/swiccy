@@ -1,7 +1,5 @@
 <?= $this->extend('Layouts/base') ?>
 
-<?=$this->section('title')?><?= esc($page->{'title_' . $locale}) ?><?php $this->endSection()?>
-
 <?= $this->section('content')?>
 
 <section class="template-default template-standard">

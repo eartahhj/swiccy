@@ -51,6 +51,8 @@ class PageController extends BaseController
         $users = model(UserModel::class);
         $author = $users->where('id', $page->user_creator_id)->first();
 
-        return view('Pages/show', compact('page', 'author'));
+        $pageTitle = esc($page->{'title_' . $this->language});
+
+        return view('Pages/show', compact('page', 'author', 'pageTitle'));
     }
 }

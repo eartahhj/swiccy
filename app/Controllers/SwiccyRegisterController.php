@@ -47,7 +47,7 @@ class SwiccyRegisterController extends RegisterController
             return redirect()->to(route('auth.show'));
         }
 
-        return view(setting('Auth.views')['register']);
+        return view(setting('Auth.views')['register'], ['pageTitle' => _('Register')]);
     }
 
     /**

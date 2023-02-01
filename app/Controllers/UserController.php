@@ -26,13 +26,6 @@ class UserController extends BaseController
         $user = new User();
     }
 
-    public function index()
-    {
-        $users = $this->users->paginate(20);
-
-        return view('Users/index', ['users' => $users, 'pager' => $this->users->pager]);
-    }
-
     public function show(int $id)
     {
         $user = $this->users->find($id);
@@ -41,7 +34,9 @@ class UserController extends BaseController
             return $this->response->setStatusCode(404)->setBody(view('errors/html/error_404', ['message' => _('This user was not found')]));
         }
 
-        return view('Users/show', compact('user'));
+        $pageTitle = sprintf(_('User profile of %s'), esc($user->username));
+
+        return view('Users/show', compact('user', 'pageTitle'));
     }
 
     public function showPostsForUser(int $id)
@@ -54,7 +49,9 @@ class UserController extends BaseController
 
         $posts = model(PostModel::class)->where('user_id', $user->id)->findAll();
 
-        return view('Users/showPostsForUser', compact('user'));
+        $pageTitle = sprintf(_('Posts made by %s'), esc($user->username));
+
+        return view('Users/showPostsForUser', compact('user', 'pageTitle'));
     }
 
     public function showMyPosts()
@@ -63,12 +60,14 @@ class UserController extends BaseController
 
         $posts = model(PostModel::class)->where('user_id', $user->id)->findAll();
 
-        return view('Users/showMyPosts', compact('posts'));
+        $pageTitle = _('Your posts');
+
+        return view('Users/showMyPosts', compact('posts', 'pageTitle'));
     }
 
     public function changePasswordView()
     {
-        return view('Auth/changePassword');
+        return view('Auth/changePassword', ['pageTitle' => _('Change your password')]);
     }
 
     public function changePasswordAction()
@@ -94,7 +93,9 @@ class UserController extends BaseController
     {
         $user = auth()->user();
 
-        return view('Users/showMyProfile', compact('user'));
+        $pageTitle = _('Your profile');
+
+        return view('Users/showMyProfile', compact('user', 'pageTitle'));
     }
 
     private function sendConfirmationEmailToUser(User $user, string $userEmail = ''): bool
@@ -131,7 +132,7 @@ class UserController extends BaseController
         }
 
         // This uses the same default view of Shield, but here the user session has expired
-        return view(setting('Auth.views')['action_email_activate_show'], ['user' => null]);
+        return view(setting('Auth.views')['action_email_activate_show'], ['user' => null, 'pageTitle' => _('Email activation')]);
     }
 
     public function changeEmailAction()
@@ -165,7 +166,7 @@ class UserController extends BaseController
             throw PageNotFoundException::forPageNotFound(_('The new email was not set in the session'));
         }
 
-        return view('Users/confirmEmailChange');
+        return view('Users/confirmEmailChange', ['pageTitle' => _('Email activation')]);
     }
 
     public function confirmEmailChangeAction()
@@ -221,7 +222,7 @@ class UserController extends BaseController
 
     public function requestActivationEmailView()
     {
-        return view('Auth/resend-activation-email-form');
+        return view('Auth/resend-activation-email-form', ['pageTitle' => _('Request a new activation email')]);
     }
 
     public function requestActivationEmailAction()

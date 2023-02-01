@@ -12,13 +12,11 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 class AdminController extends BaseController
 {
     private $posts = null;
-    private $users = null;
     private $pages = null;
 
     public function __construct()
     {
         $this->posts = model(PostModel::class);
-        $this->users = model(UserModel::class);
         $this->pages = model(PageModel::class);
 
         self::$templateStylesheets[] = '/css/panel.css';
@@ -26,85 +24,14 @@ class AdminController extends BaseController
 
     public function index()
     {
-        return view('Admin/index', []);
-    }
-
-    public function editUser(int $id)
-    {
-        $user = $this->users->find($id);
-
-        if (!$user) {
-            throw PageNotFoundException::forPageNotFound(_('This user was not found'));
-        }
-
-        if (!auth()->user()->inGroup('superadmin') and !$this->user->hasPermission('users.edit')) {
-            // return $this->response->setStatusCode(404)->setBody(view('errors/html/error_404', ['message' => _('This user was not found')]));
-            throw PageNotFoundException::forPageNotFound(_('This user was not found'));
-        }
-
-        $groups = model(GroupModel::class);
-        $userGroups = $groups->getForUser($user);
-        $allGroups = config('AuthGroups')->groups;
-        $allPermissions = config('AuthGroups')->permissions;
-
-        return view('Admin/users/edit', compact('user', 'userGroups', 'allGroups', 'allPermissions'));
-    }
-
-    public function editUserGroups(int $userId)
-    {
-        $user = $this->users->find($userId);
-
-        if (!$user) {
-            throw PageNotFoundException::forPageNotFound(_('This user was not found'));
-        }
-
-        if (!auth()->user()->inGroup('superadmin') and !$this->user->hasPermission('users.edit')) {
-            throw PageNotFoundException::forPageNotFound(_('This user was not found'));
-        }
-
-        $groups = $this->request->getPost('groups');
-        
-        if (!$user->syncGroups(...$groups)) {
-            return redirect()->back()->with('error', _('There was an error updating the groups'))->withInput();
-        } else {
-            return redirect()->back()->with('success', _('Groups updated!'));
-        }
-    }
-
-    public function editUserPermissions(int $userId)
-    {
-        $user = $this->users->find($userId);
-
-        if (!$user) {
-            throw PageNotFoundException::forPageNotFound(_('This user was not found'));
-        }
-
-        if (!auth()->user()->inGroup('superadmin') and !$this->user->hasPermission('users.edit')) {
-            throw PageNotFoundException::forPageNotFound(_('This user was not found'));
-        }
-
-        $permissions = $this->request->getPost('permissions');
-        
-        if (!$user->syncPermissions(...$permissions)) {
-            return redirect()->back()->with('error', _('There was an error updating the permissions'))->withInput();
-        } else {
-            return redirect()->back()->with('success', _('Permissions updated!'));
-        }
-    }
-
-    public function updateUser()
-    {
-    }
-
-    public function deleteUser()
-    {
+        return view('Admin/index', ['pageTitle' => _('Administration')]);
     }
 
     public function posts()
     {
         $posts = $this->posts->paginate(20);
 
-        return view('Admin/posts/index', ['posts' => $posts, 'pager' => $this->posts->pager]);
+        return view('Admin/posts/index', ['posts' => $posts, 'pager' => $this->posts->pager, 'pageTitle' => _('Manage posts')]);
     }
 
     public function editPost(int $id)
@@ -172,7 +99,7 @@ class AdminController extends BaseController
     {
         $pages = $this->pages->paginate(20);
 
-        return view('Admin/pages/index', ['pages' => $pages, 'pager' => $this->pages->pager]);
+        return view('Admin/pages/index', ['pages' => $pages, 'pager' => $this->pages->pager, 'pageTitle' => _('Manage pages')]);
     }
 
     public function createPageView()
@@ -181,7 +108,7 @@ class AdminController extends BaseController
         self::$templateJavascripts[] = '/js/tinymce-init.js';
 
         return view('Admin/pages/new', ['templateJavascripts' => static::$templateJavascripts,
-        'templateStylesheets' => static::$templateStylesheets]);
+        'templateStylesheets' => static::$templateStylesheets, 'pageTitle' => _('New page')]);
     }
 
     public function createPageAction()
@@ -219,8 +146,12 @@ class AdminController extends BaseController
         self::$templateJavascripts[] = '/js/tinymce/tinymce.min.js';
         self::$templateJavascripts[] = '/js/tinymce-init.js';
 
-        return view('Admin/pages/edit', ['page' => $page, 'templateJavascripts' => static::$templateJavascripts,
-        'templateStylesheets' => static::$templateStylesheets]);
+        return view('Admin/pages/edit', [
+            'page' => $page,
+            'templateJavascripts' => static::$templateJavascripts,
+            'templateStylesheets' => static::$templateStylesheets,
+            'pageTitle' => _('Edit page')
+        ]);
     }
 
     public function updatePage()
