@@ -142,6 +142,7 @@ abstract class BaseController extends Controller
         $view->setVar('animationsEnabled', $animationsEnabled);
         $view->setVar('languages', $this->languages);
         $view->setVar('showCookiePolicyBanner', $showCookiePolicyBanner);
+        $view->setVar('matomoTracker', $matomoTracker);
         // $view->setVar('hasUserAcceptedTracking', $hasUserAcceptedTracking);
     }
 }
