@@ -114,7 +114,7 @@
         <div class="field">
             <div class="control file is-link has-name is-fullwidth">
                 <label class="file-label" for="post-images">
-                    <input class="file-input simp" type="file" name="images[]" id="post-images" multiple accept="image/*"  data-preview-container-selector="#images-previews" data-names-container-selector="#file-names" />
+                    <input class="file-input simp" type="file" name="images[]" id="post-images" multiple accept="image/*" data-preview-container-selector="#images-previews" data-names-container-selector="#file-names" />
                     <span class="file-cta">
                         <span class="file-icon">
                         <i class="fas fa-upload"></i>

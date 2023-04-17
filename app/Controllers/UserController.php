@@ -313,6 +313,11 @@ class UserController extends BaseController
     public function deleteMyAccount()
     {
         $user = auth()->user();
+
+        if ($user->id != auth()->user()) {
+            return $this->response->setStatusCode(401)->setBody(view('errors/html/error_401', ['message' => _('Unauthorized access')]));
+        }
+
         $postModel = model(PostModel::class);
         $imageModel = model(ImageModel::class);
 

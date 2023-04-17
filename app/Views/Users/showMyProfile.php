@@ -6,7 +6,7 @@
         <h1 class="title is-2"><?= _('Your profile') ?></h1>
 
         <h2 class="title is-5 mb-0"><?= _('Username') ?></h2>
-        <p><?= esc($user->username) ?></p>
+        <p><?= esc($user->name) ?></p>
 
         <h2 class="title is-5 mt-5 mb-1"><?= _('Avatar') ?></h2>
         <figure>

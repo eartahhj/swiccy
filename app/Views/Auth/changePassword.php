@@ -17,9 +17,9 @@
             </div>
 
             <div class="field">
-                <label for="password_confirm" class="label"><?= _('Confirm password') ?></label>
+                <label for="user-password_confirm" class="label"><?= _('Confirm password') ?></label>
                 <div class="control has-icons-left has-icons-right">
-                    <input type="password" class="input" name="password_confirm" inputmode="text" autocomplete="off" placeholder="<?= _('Repeat the password') ?>" required value="" />
+                    <input id="user-password_confirm" type="password" class="input" name="password_confirm" inputmode="text" autocomplete="off" placeholder="<?= _('Repeat the password') ?>" required value="" />
                     <span class="icon is-small is-left">
                         <i class="fas fa-lock"></i>
                     </span>
